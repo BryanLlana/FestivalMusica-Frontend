@@ -1,0 +1,18 @@
+{
+  "name": "festivalmusica",
+  "version": "1.0.0",
+  "description": "Proyecto con Gulp, Sass y Html",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch src/scss:dist/css"
+  },
+  "keywords": [
+    "sass",
+    "gulp"
+  ],
+  "author": "Bryan Tito Llana",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.64.1"
+  }
+}
