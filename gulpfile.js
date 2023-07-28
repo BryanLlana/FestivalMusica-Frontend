@@ -46,8 +46,18 @@ const avif = done => {
   done()
 }
 
-const dev = () => {
+const javascript = done => {
+  src('src/js/**/*.js')
+    .pipe(dest('dist/js'))
+
+  done()
+}
+
+const dev = done => {
   watch('src/scss/**/*.scss', scss)
+  watch('src/js/**/*.js', javascript)
+
+  done()
 }
 
 const devParallel = parallel(imagenes, webp, avif, dev)
@@ -57,6 +67,7 @@ export {
   webp,
   imagenes,
   avif,
+  javascript,
   dev,
   devParallel
 }
