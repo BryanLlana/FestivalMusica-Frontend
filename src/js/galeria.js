@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const iniciarApp = () => {
   crearGaleria()
   scrollSnap()
+  navegacionFija()
 }
 
 const crearGaleria = () => {
@@ -64,5 +65,21 @@ const scrollSnap = () => {
       const seccion = document.querySelector(seccionScroll)
       seccion.scrollIntoView({ behavior: 'smooth' })
     })
+  })
+}
+
+const navegacionFija = () => {
+  const barra = document.querySelector('.header')
+  const sobreFestival = document.querySelector('.sobre-festival')
+  const body = document.querySelector('body')
+
+  window.addEventListener('scroll', () => {
+    if(sobreFestival.getBoundingClientRect().top < 0) {
+      barra.classList.add('fijo')
+      body.classList.add('body-scroll')
+    } else {
+      barra.classList.remove('fijo')
+      body.classList.remove('body-scroll')
+    }
   })
 }
