@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const iniciarApp = () => {
   crearGaleria()
+  scrollSnap()
 }
 
 const crearGaleria = () => {
@@ -52,4 +53,16 @@ const mostrarImagen = id => {
   const body = document.querySelector('body')
   body.appendChild(overlay)
   body.classList.add('fijar-body')
+}
+
+const scrollSnap = () => {
+  const enlaces = document.querySelectorAll('.navegacion-principal a')
+  enlaces.forEach(enlace => {
+    enlace.addEventListener('click', e => {
+      e.preventDefault()
+      const seccionScroll = e.target.attributes.href.value
+      const seccion = document.querySelector(seccionScroll)
+      seccion.scrollIntoView({ behavior: 'smooth' })
+    })
+  })
 }
