@@ -2,6 +2,10 @@ import gulp from 'gulp'
 import gulpSass from 'gulp-sass'
 import * as sassPkg from 'sass'
 import gulpPlumber from 'gulp-plumber'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
+import postcss from 'gulp-postcss'
+import sourcemaps from 'gulp-sourcemaps'
 
 import gulpImageMin from 'gulp-imagemin'
 import gulpCache from 'gulp-cache'
@@ -13,8 +17,11 @@ const sass = gulpSass(sassPkg)
 
 const scss = done => {
   src('src/scss/app.scss')
+    .pipe(sourcemaps.init())
     .pipe(gulpPlumber())
     .pipe(sass())
+    .pipe(postcss([autoprefixer(), cssnano()]))
+    .pipe(sourcemaps.write('.'))
     .pipe(dest('dist/css'))
   done()
 }
