@@ -12,6 +12,8 @@ import gulpCache from 'gulp-cache'
 import gulpWebp from 'gulp-webp'
 import gulpAvif from 'gulp-avif'
 
+import terser from 'gulp-terser-js'
+
 const { src, dest, watch, parallel } = gulp
 const sass = gulpSass(sassPkg)
 
@@ -55,6 +57,9 @@ const avif = done => {
 
 const javascript = done => {
   src('src/js/**/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(terser())
+    .pipe(sourcemaps.write('.'))
     .pipe(dest('dist/js'))
 
   done()
